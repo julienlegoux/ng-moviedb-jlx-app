@@ -1,5 +1,2 @@
-<div *ngIf="movie">
-    <div>
-        {{movie.title}}
-    </div>
-</div>
+<input (keyup)="onKey($event)" placeholder="enter id" >
+<button (click)="goToDetail()">GO</button>

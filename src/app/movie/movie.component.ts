@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
-import {SearchService} from "./search.service";
-import {Movie} from "./movie";
 
 @Component({
   selector: 'app-movie',
@@ -9,15 +8,22 @@ import {Movie} from "./movie";
 })
 export class MovieComponent implements OnInit {
 
-  movie: Movie | undefined;
+private inputValue: any = '';
 
-  constructor(private search: SearchService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(){
-    let movieResult = this.search.getMovie().subscribe(movie => this.movie = movie)
-    if(this.movie != undefined){
-      movieResult.unsubscribe()
+  }
+
+  onKey(event: any) {
+    this.inputValue = event.target.value
+  }
+
+  goToDetail() {
+    if(this.inputValue){
+      console.log(this.inputValue)
+      this.router.navigate(['/detail', this.inputValue])
     }
   }
 
